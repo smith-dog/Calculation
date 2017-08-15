@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Travelsky on 2017/8/6.
  */
-public class InsertAlgorithm implements Algorithm{
+public class InsertSort implements Algorithm{
 
     @Override
     public void calculate(int[] intArray) {

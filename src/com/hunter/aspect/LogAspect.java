@@ -10,22 +10,20 @@ public class LogAspect {
         private long beforeTime;
 
         public void beforeMethod() {
-            Date date = new Date();
-            beforeTime = date.getTime();
-            System.out.print("use time :" + (beforeTime));
+            beforeTime = System.currentTimeMillis();
+            //System.out.println("before time :" + (beforeTime));
         }
 
         public void afterMethod() {
-            Date date = new Date();
-            System.out.print("use time :" + (date.getTime() - beforeTime));
+            System.out.println("use time :" + (System.currentTimeMillis() - beforeTime));
         }
 
         public void afterReturning() {
-            System.out.print("use time :" + (beforeTime));
+            //System.out.print("use time :" + (beforeTime));
         }
 
         public void afterThrowing() {
-            System.out.print("use time :" + (beforeTime));
+            //System.out.print("use time :" + (beforeTime));
         }
 
 }

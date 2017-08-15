@@ -1,7 +1,6 @@
 package com.hunter.cal;
 
 import com.hunter.algorithm.Algorithm;
-import com.hunter.algorithm.InsertAlgorithm;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,11 +33,22 @@ public class Calculation {
     //定义随机数组长度
     private static final int MIN_LENGTH = 5;
     private static final int MID_LENGTH = 10;
-    private static final int MAX_LENGTH = 32;
+    private static final int MAX_LENGTH = 10000;
+
+    //定义每个数字的大小
+    private static final int NUMBER_LENGTH = 100;
 
     @Autowired
-    @Qualifier("insertAlgorithm")
-    Algorithm insertAlgorithm;
+    @Qualifier("insertSort")
+    Algorithm insertSort;
+
+    @Autowired
+    @Qualifier("bubbleSort")
+    Algorithm bubbleSort;
+
+    @Autowired
+    @Qualifier("shellSort")
+    Algorithm shellSort;
 
     @BeforeClass
     public static void init(){
@@ -57,8 +67,40 @@ public class Calculation {
         List<int[]> midList = genArray(midSourceList);
         List<int[]> maxList = genArray(maxSourceList);
 
-        insertAlgorithm.calculate(minList);
-        minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        System.out.println("shellSort");
+        //shellSort.calculate(minList);
+        //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        shellSort.calculate(midList);
+        midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        //shellSort.calculate(maxList);
+        //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+
+
+        List<int[]> minList1 = genArray(minSourceList);
+        List<int[]> midList1 = genArray(midSourceList);
+        List<int[]> maxList1 = genArray(maxSourceList);
+
+        System.out.println("insertSort");
+        //insertSort.calculate(minList1);
+        //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        //insertSort.calculate(midList1);
+        //midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        insertSort.calculate(maxList1);
+        //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+
+        List<int[]> minList2 = genArray(minSourceList);
+        List<int[]> midList2 = genArray(midSourceList);
+        List<int[]> maxList2 = genArray(maxSourceList);
+
+        System.out.println("bubbleSort");
+        //bubbleSort.calculate(minList2);
+        //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        //bubbleSort.calculate(midList2);
+        //midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+        bubbleSort.calculate(maxList2);
+        //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
+
+
     }
 
     /**
@@ -80,7 +122,7 @@ public class Calculation {
         for(int i = 0; i < 10 ; i++) {
             int[] n = new int[length];
             for(int j = 0 ;j <length ; j++) {
-                n[j] = (int)(Math.random()*1000);
+                n[j] = (int)(Math.random()*NUMBER_LENGTH);
             }
             list.add(n);
         }
@@ -97,8 +139,17 @@ public class Calculation {
         return list;
     }
 
-    public void setInsertAlgorithm(InsertAlgorithm insertAlgorithm) {
-        this.insertAlgorithm = insertAlgorithm;
+
+    public void setInsertSort(Algorithm insertSort) {
+        this.insertSort = insertSort;
+    }
+
+    public void setBubbleSort(Algorithm bubbleSort) {
+        this.bubbleSort = bubbleSort;
+    }
+
+    public void setShellSort(Algorithm shellSort) {
+        this.shellSort = shellSort;
     }
 }
 
