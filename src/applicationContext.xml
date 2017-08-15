@@ -14,15 +14,16 @@
     <context:component-scan base-package="com.hunter" />
     <aop:aspectj-autoproxy />
     <!-- 配置bean -->
-    <bean id = "insertAlgorithm" class = "com.hunter.algorithm.InsertAlgorithm"/>
+    <bean id = "insertSort" class = "com.hunter.algorithm.InsertSort"/>
     <bean id = "bubbleSort" class = "com.hunter.algorithm.BubbleSort"/>
+    <bean id = "shellSort" class = "com.hunter.algorithm.ShellSort"/>
     <!-- 配置切面bean -->
     <bean id="logAspect" class="com.hunter.aspect.LogAspect"></bean>
 
     <!-- 配置AOP -->
     <aop:config>
         <!-- 配置切入点表达式 -->
-        <aop:pointcut expression="execution(* com.hunter.algorithm..*(..))" id="logging"/>
+        <aop:pointcut expression="execution(* com.hunter.algorithm.Algorithm.*(..))" id="logging"/>
         <!-- 配置切面及通知 -->
         <aop:aspect ref="logAspect">
             <aop:before method="beforeMethod" pointcut-ref="logging"/>
