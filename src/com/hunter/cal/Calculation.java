@@ -22,8 +22,6 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-@TransactionConfiguration(defaultRollback = true)
-@Transactional
 @Component
 public class Calculation {
     //源数组

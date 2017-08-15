@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="SpringAOP">
+    <CLASSES>
+      <root url="file://E:/myLib/SpringAOP相关的" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://E:/myLib/SpringAOP相关的" recursive="false" />
+  </library>
+</component>
