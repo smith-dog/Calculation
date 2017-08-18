@@ -14,16 +14,19 @@
     <context:component-scan base-package="com.hunter" />
     <aop:aspectj-autoproxy />
     <!-- 配置bean -->
-    <bean id = "insertSort" class = "com.hunter.algorithm.InsertSort"/>
-    <bean id = "bubbleSort" class = "com.hunter.algorithm.BubbleSort"/>
-    <bean id = "shellSort" class = "com.hunter.algorithm.ShellSort"/>
+    <bean id = "insertSort" class = "com.hunter.algorithm.InsertSort" parent="algorithm"/>
+    <bean id = "bubbleSort" class = "com.hunter.algorithm.BubbleSort" parent="algorithm"/>
+    <bean id = "shellSort" class = "com.hunter.algorithm.ShellSort" parent="algorithm"/>
+    <bean id = "simpleSelectionSort" class = "com.hunter.algorithm.SimpleSelectionSort" parent="algorithm"/>
+    <bean id = "secondSelectionSort" class = "com.hunter.algorithm.SecondSelectionSort" parent="algorithm"/>
+    <bean id = "algorithm" class = "com.hunter.algorithm.Algorithm" abstract="true"/>
     <!-- 配置切面bean -->
     <bean id="logAspect" class="com.hunter.aspect.LogAspect"></bean>
 
     <!-- 配置AOP -->
     <aop:config>
         <!-- 配置切入点表达式 -->
-        <aop:pointcut expression="execution(* com.hunter.algorithm.Algorithm.*(..))" id="logging"/>
+        <aop:pointcut expression="execution(* com.hunter.algorithm.Algorithm.*(java.util.List))" id="logging"/>
         <!-- 配置切面及通知 -->
         <aop:aspect ref="logAspect">
             <aop:before method="beforeMethod" pointcut-ref="logging"/>

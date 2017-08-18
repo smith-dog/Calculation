@@ -1,6 +1,7 @@
 package com.hunter.cal;
 
 import com.hunter.algorithm.Algorithm;
+import com.hunter.algorithm.SimpleSelectionSort;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +33,7 @@ public class Calculation {
     //定义随机数组长度
     private static final int MIN_LENGTH = 5;
     private static final int MID_LENGTH = 10;
-    private static final int MAX_LENGTH = 10000;
+    private static final int MAX_LENGTH = 20000;
 
     //定义每个数字的大小
     private static final int NUMBER_LENGTH = 100;
@@ -48,6 +50,14 @@ public class Calculation {
     @Qualifier("shellSort")
     Algorithm shellSort;
 
+    @Autowired
+    @Qualifier("simpleSelectionSort")
+    Algorithm simpleSelectionSort;
+
+    @Autowired
+    @Qualifier("secondSelectionSort")
+    Algorithm secondSelectionSort;
+
     @BeforeClass
     public static void init(){
         //加载容器，用到AOP
@@ -60,45 +70,27 @@ public class Calculation {
 
     @Test
     public void testCal() {
+
+        genArrayAndCal(insertSort);
+        genArrayAndCal(shellSort);
+        genArrayAndCal(bubbleSort);
+        genArrayAndCal(simpleSelectionSort);
+        genArrayAndCal(secondSelectionSort);
+
+    }
+
+    private void genArrayAndCal(Algorithm algorithm) {
         //生成随机的数组序列
         List<int[]> minList = genArray(minSourceList);
         List<int[]> midList = genArray(midSourceList);
         List<int[]> maxList = genArray(maxSourceList);
-
-        System.out.println("shellSort");
-        //shellSort.calculate(minList);
+        algorithm.printName();
+        //algorithm.calculate(minList);
         //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        shellSort.calculate(midList);
-        midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        //shellSort.calculate(maxList);
-        //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-
-
-        List<int[]> minList1 = genArray(minSourceList);
-        List<int[]> midList1 = genArray(midSourceList);
-        List<int[]> maxList1 = genArray(maxSourceList);
-
-        System.out.println("insertSort");
-        //insertSort.calculate(minList1);
-        //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        //insertSort.calculate(midList1);
+        //algorithm.calculate(midList);
         //midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        insertSort.calculate(maxList1);
+        algorithm.calculate(maxList);
         //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-
-        List<int[]> minList2 = genArray(minSourceList);
-        List<int[]> midList2 = genArray(midSourceList);
-        List<int[]> maxList2 = genArray(maxSourceList);
-
-        System.out.println("bubbleSort");
-        //bubbleSort.calculate(minList2);
-        //minList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        //bubbleSort.calculate(midList2);
-        //midList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-        bubbleSort.calculate(maxList2);
-        //maxList.stream().forEach(ints -> System.out.println(Arrays.toString(ints)));
-
-
     }
 
     /**
@@ -148,6 +140,10 @@ public class Calculation {
 
     public void setShellSort(Algorithm shellSort) {
         this.shellSort = shellSort;
+    }
+
+    public void setSimpleSelectionSort(SimpleSelectionSort simpleSelectionSort) {
+        this.simpleSelectionSort = simpleSelectionSort;
     }
 }
 

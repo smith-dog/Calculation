@@ -11,6 +11,10 @@ public interface Algorithm {
 
     public void calculate(int[] intArray);
 
+    default void printName() {
+        System.out.println(this.getClass().getCanonicalName());
+    }
+
     default void calculate(List<int[]> list) {
         list.stream().forEach(ints -> calculate(ints));
     }

@@ -9,39 +9,38 @@ import java.util.List;
 public class ShellSort implements Algorithm{
     @Override
     public void calculate(int[] intArray) {
-        //取中位，并将序列分为几分继续迭代
-
-        //遍历直至为1
-        /*for(int initLength = intArray.length/2;initLength>1;initLength=initLength/2) {
-            //插入排序
-            for(int i=initLength;i<intArray.length;i++) {
-                int j = i;
-                int temp = intArray[j];
-                if (intArray[j] < intArray[j - initLength]) {
-                    while (j - initLength >= 0 && temp < intArray[j - initLength]) {
-                        //移动法
-                        intArray[j] = intArray[j - initLength];
-                        j -= initLength;
-                    }
-                    intArray[j] = temp;
+        /*//外层循环，取步进数值
+        int temp;
+        for(int stepNumber = intArray.length/2; stepNumber>=1; stepNumber /= 2) {
+            //内层循环（插入排序）
+            for (int i = 1; i < intArray.length/stepNumber; i++) {
+                //第二个往前比对
+                temp = intArray[i*stepNumber];
+                int j = i - 1;
+                while (j >= 0 && intArray[j*stepNumber] > temp) {
+                    intArray[(j + 1)*stepNumber] = intArray[j*stepNumber];
+                    j--;
                 }
+                intArray[(j + 1)*stepNumber] = temp;
             }
-
         }*/
-
-        int i,j;
-        int r,temp;
-        for(r = intArray.length/2;r>=1;r/=2) {
-            for(i=r;i<intArray.length;i++) {
+        int j = 0;
+        int temp = 0;
+        for (int increment = intArray.length / 2; increment > 0; increment /= 2) {
+            for (int i = increment; i < intArray.length; i++) {
+                // System.out.println("i:" + i);
                 temp = intArray[i];
-                j=i-r;
-                //优化
-                //和前一个比较，若比前一个小则继续向前比较，直到比前一个大或者相等为止，或者
-                while(j>=0 && temp<intArray[j]) {
-                    intArray[j+r] = intArray[j];
-                    j-=r;
+                for (j = i - increment; j >= 0; j -= increment) {
+                    // System.out.println("j:" + j);
+                    // System.out.println("temp:" + temp);
+                    // System.out.println("data[" + j + "]:" + data[j]);
+                    if (temp < intArray[j]) {
+                        intArray[j + increment] = intArray[j];
+                    } else {
+                        break;
+                    }
                 }
-                intArray[j+r] = temp;
+                intArray[j + increment] = temp;
             }
         }
     }
