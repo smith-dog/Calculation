@@ -36,7 +36,7 @@ public class Calculation {
     private static final int MAX_LENGTH = 20000;
 
     //定义每个数字的大小
-    private static final int NUMBER_LENGTH = 100;
+    private static final int NUMBER_LENGTH = 100000;
 
     @Autowired
     @Qualifier("insertSort")
@@ -58,6 +58,15 @@ public class Calculation {
     @Qualifier("secondSelectionSort")
     Algorithm secondSelectionSort;
 
+    @Autowired
+    @Qualifier("oriQuickSort")
+    Algorithm oriQuickSort;
+
+    @Autowired
+    @Qualifier("oriSimpleSelectionSort")
+    Algorithm oriSimpleSelectionSort;
+
+
     @BeforeClass
     public static void init(){
         //加载容器，用到AOP
@@ -70,13 +79,13 @@ public class Calculation {
 
     @Test
     public void testCal() {
-
         genArrayAndCal(insertSort);
         genArrayAndCal(shellSort);
         genArrayAndCal(bubbleSort);
+        genArrayAndCal(oriSimpleSelectionSort);
         genArrayAndCal(simpleSelectionSort);
         genArrayAndCal(secondSelectionSort);
-
+        genArrayAndCal(oriQuickSort);
     }
 
     private void genArrayAndCal(Algorithm algorithm) {

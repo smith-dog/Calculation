@@ -11,14 +11,16 @@
         http://www.springframework.org/schema/context/spring-context-4.0.xsd
         ">
 
-    <context:component-scan base-package="com.hunter" />
+    <context:component-scan base-package="com.hunter"/>
     <aop:aspectj-autoproxy />
     <!-- ÅäÖÃbean -->
     <bean id = "insertSort" class = "com.hunter.algorithm.InsertSort" parent="algorithm"/>
     <bean id = "bubbleSort" class = "com.hunter.algorithm.BubbleSort" parent="algorithm"/>
     <bean id = "shellSort" class = "com.hunter.algorithm.ShellSort" parent="algorithm"/>
     <bean id = "simpleSelectionSort" class = "com.hunter.algorithm.SimpleSelectionSort" parent="algorithm"/>
+    <bean id = "oriSimpleSelectionSort" class = "com.hunter.algorithm.OriSimpleSelectionSort" parent="algorithm"/>
     <bean id = "secondSelectionSort" class = "com.hunter.algorithm.SecondSelectionSort" parent="algorithm"/>
+    <bean id = "oriQuickSort" class = "com.hunter.algorithm.OriQuickSort" parent="algorithm"/>
     <bean id = "algorithm" class = "com.hunter.algorithm.Algorithm" abstract="true"/>
     <!-- ÅäÖÃÇÐÃæbean -->
     <bean id="logAspect" class="com.hunter.aspect.LogAspect"></bean>
