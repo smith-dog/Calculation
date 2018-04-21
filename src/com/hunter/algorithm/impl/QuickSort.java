@@ -1,13 +1,17 @@
-package com.hunter.algorithm;
+package com.hunter.algorithm.impl;
+
+import com.hunter.algorithm.Algorithm;
 
 /**
+ * 快速排序实现，随机大的情况下非常快，时间复杂度
  * Created by hunter on 2017/8/19.
  */
-public class OriQuickSort implements Algorithm{
+public class QuickSort implements Algorithm {
     @Override
     public void calculate(int[] intArray) {
-        cal(intArray, 0,  intArray.length-1);
+        cal(intArray, 0, intArray.length - 1);
     }
+
     private void cal(int[] intArray, int start, int end) {
         //选择快排的基准
         //选择基准,取第一个数
@@ -15,11 +19,11 @@ public class OriQuickSort implements Algorithm{
         //建立哨兵
         int i = start + 1;
         int j = end;
-        if(j<=i) {
+        if (j <= i) {
             return;
         }
         //哨兵J开始移动
-        while(i!=j) {
+        while (i != j) {
             //没有冲突的话，那么比对J与基准
             while (intArray[j] >= intArray[benchmark] && i < j)
                 j--;
@@ -37,7 +41,7 @@ public class OriQuickSort implements Algorithm{
         intArray[i] = intArray[benchmark];
         intArray[benchmark] = temp;
         benchmark = i;
-        cal(intArray, start,  benchmark - 1);
-        cal(intArray, benchmark+1,  end);
+        cal(intArray, start, benchmark - 1);
+        cal(intArray, benchmark + 1, end);
     }
 }

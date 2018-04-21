@@ -1,12 +1,14 @@
-package com.hunter.algorithm;
+package com.hunter.algorithm.impl;
+
+import com.hunter.algorithm.Algorithm;
 
 import java.util.List;
 
 /**
- * Created by Travelsky on 2017/8/15.
+ * Created by hunter on 2017/8/15.
  * 希尔排序，直接插入排序的改进版本，不稳定
  */
-public class ShellSort implements Algorithm{
+public class ShellSort implements Algorithm {
     @Override
     public void calculate(int[] intArray) {
         /*//外层循环，取步进数值

@@ -1,11 +1,14 @@
-package com.hunter.algorithm;
+package com.hunter.algorithm.impl;
+
+import com.hunter.algorithm.Algorithm;
 
 import java.util.List;
 
 /**
- * Created by Travelsky on 2017/8/6.
+ * 插入排序，在数量少的情况下非常快
+ * Created by hunter on 2017/8/6.
  */
-public class InsertSort implements Algorithm{
+public class InsertSort implements Algorithm {
 
     @Override
     public void calculate(int[] intArray) {

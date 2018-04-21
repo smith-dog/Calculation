@@ -1,7 +1,7 @@
 package com.hunter.cal;
 
 import com.hunter.algorithm.Algorithm;
-import com.hunter.algorithm.SimpleSelectionSort;
+import com.hunter.algorithm.impl.SimpleSelectionSort;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,25 +10,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Travelsky on 2017/8/3.
+ * Created by hunter on 2017/8/3.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-@Component
 public class Calculation {
     //源数组
-    private  static final List<int[]> minSourceList = new ArrayList<>();
-    private  static final List<int[]> midSourceList = new ArrayList<>();
-    private  static final List<int[]> maxSourceList = new ArrayList<>();
+    private static final List<int[]> minSourceList = new ArrayList<>();
+    private static final List<int[]> midSourceList = new ArrayList<>();
+    private static final List<int[]> maxSourceList = new ArrayList<>();
 
     //定义随机数组长度
     private static final int MIN_LENGTH = 5;
@@ -68,7 +64,7 @@ public class Calculation {
 
 
     @BeforeClass
-    public static void init(){
+    public static void init() {
         //加载容器，用到AOP
         //初始化源随机数组
 
@@ -104,24 +100,27 @@ public class Calculation {
 
     /**
      * 从源数组中copy一个新数组
+     *
      * @return
      */
     private static List<int[]> genArray(List<int[]> originList) {
         List<int[]> copyList = new ArrayList<>();
-        originList.stream().forEach(ints -> copyList.add(Arrays.copyOf(ints,ints.length)));
+        originList.stream().forEach(ints -> copyList.add(Arrays.copyOf(ints, ints.length)));
         return copyList;
     }
 
+
     /**
      * 原数组初始化方法
+     *
      * @param list
      * @param length
      */
-    private static void genOriginArray(List<int[]> list,int length) {
-        for(int i = 0; i < 10 ; i++) {
+    private static void genOriginArray(List<int[]> list, int length) {
+        for (int i = 0; i < 10; i++) {
             int[] n = new int[length];
-            for(int j = 0 ;j <length ; j++) {
-                n[j] = (int)(Math.random()*NUMBER_LENGTH);
+            for (int j = 0; j < length; j++) {
+                n[j] = (int) (Math.random() * NUMBER_LENGTH);
             }
             list.add(n);
         }
@@ -129,12 +128,13 @@ public class Calculation {
 
     /**
      * 源数组初始化方法
+     *
      * @param length
      * @return
      */
     private static List genOriginArray(int length) {
         List<int[]> list = new ArrayList<>();
-        genOriginArray(list,length);
+        genOriginArray(list, length);
         return list;
     }
 

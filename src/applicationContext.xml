@@ -12,16 +12,16 @@
         ">
 
     <context:component-scan base-package="com.hunter"/>
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy/>
     <!-- ÅäÖÃbean -->
-    <bean id = "insertSort" class = "com.hunter.algorithm.InsertSort" parent="algorithm"/>
-    <bean id = "bubbleSort" class = "com.hunter.algorithm.BubbleSort" parent="algorithm"/>
-    <bean id = "shellSort" class = "com.hunter.algorithm.ShellSort" parent="algorithm"/>
-    <bean id = "simpleSelectionSort" class = "com.hunter.algorithm.SimpleSelectionSort" parent="algorithm"/>
-    <bean id = "oriSimpleSelectionSort" class = "com.hunter.algorithm.OriSimpleSelectionSort" parent="algorithm"/>
-    <bean id = "secondSelectionSort" class = "com.hunter.algorithm.SecondSelectionSort" parent="algorithm"/>
-    <bean id = "oriQuickSort" class = "com.hunter.algorithm.OriQuickSort" parent="algorithm"/>
-    <bean id = "algorithm" class = "com.hunter.algorithm.Algorithm" abstract="true"/>
+    <bean id="insertSort" class="com.hunter.algorithm.impl.InsertSort" parent="algorithm"/>
+    <bean id="bubbleSort" class="com.hunter.algorithm.impl.BubbleSort" parent="algorithm"/>
+    <bean id="shellSort" class="com.hunter.algorithm.impl.ShellSort" parent="algorithm"/>
+    <bean id="simpleSelectionSort" class="com.hunter.algorithm.impl.SimpleSelectionSort" parent="algorithm"/>
+    <bean id="oriSimpleSelectionSort" class="com.hunter.algorithm.impl.OriSimpleSelectionSort" parent="algorithm"/>
+    <bean id="secondSelectionSort" class="com.hunter.algorithm.impl.SecondSelectionSort" parent="algorithm"/>
+    <bean id="oriQuickSort" class="com.hunter.algorithm.impl.QuickSort" parent="algorithm"/>
+    <bean id="algorithm" class="com.hunter.algorithm.Algorithm" abstract="true"/>
     <!-- ÅäÖÃÇÐÃæbean -->
     <bean id="logAspect" class="com.hunter.aspect.LogAspect"></bean>
 
@@ -33,8 +33,8 @@
         <aop:aspect ref="logAspect">
             <aop:before method="beforeMethod" pointcut-ref="logging"/>
             <aop:after method="afterMethod" pointcut-ref="logging"/>
-            <aop:after-returning method="afterReturning"  pointcut-ref="logging"/>
-            <aop:after-throwing method="afterThrowing"  pointcut-ref="logging"/>
+            <aop:after-returning method="afterReturning" pointcut-ref="logging"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="logging"/>
         </aop:aspect>
     </aop:config>
 </beans>
